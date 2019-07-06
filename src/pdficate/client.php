@@ -11,7 +11,7 @@ namespace Pdficate;
  */
 
 defined("PDFICATE_API_KEY") 							|| define("PDFICATE_API_KEY","some_secret_key");
-defined("PDFICATE_API_URL") 							|| define("PDFICATE_API_URL","https://www.pdficate.com/api/");
+defined("PDFICATE_API_URL") 							|| define("PDFICATE_API_URL","https://pdficate.com/api/");
 
 class Client {
 
