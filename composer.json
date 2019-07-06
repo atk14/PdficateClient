@@ -1,0 +1,23 @@
+{
+        "name": "atk14/pdficate-client",
+        "type": "library",
+        "description": "Client for Pdficate.com - HTML to PDF converter",
+        "keywords": ["pdf","pdfize","url","html"],
+        "homepage": "https://github.com/atk14/PdficateClient",
+        "license": ["MIT"],
+        "authors": [
+                {
+                        "name": "Jaromir Tomek",
+                        "homepage": "https://github.com/yarri"
+                }
+        ],
+        "require": {
+                "php": ">=5.6.0",
+                "atk14/url-fetcher": "1.* >=1.3"
+        },
+        "require-dev": {
+        },
+        "autoload": {
+                "classmap": ["src"]
+        }
+}
