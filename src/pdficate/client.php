@@ -18,6 +18,7 @@ class Client {
 	const VERSION = "0.1";
 
 	var $api_key;
+	var $options;
 
 	function __construct($options = array()){
 		$options += array(
@@ -28,18 +29,24 @@ class Client {
 			"margin_left" => "2cm",
 			"margin_right" => "2cm",
 			"margin_bottom" => "2cm",
+
 			"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
 		);
 
 		$this->api_key = $options["api_key"];
+		unset($options["api_key"]);
+
+		$this->options = $options;
 	}
 
 	function printToPdf($url){
-		$uf = $this->_get("pdf_converters/url_to_pdf",array(
-			"url" => $url,
-			"api_key" => $this->api_key,
-			"format" => "json",
-		));
+		$params = $this->options;
+
+		$params["url"] = $url;
+		$params["api_key"] = $this->api_key;
+		$params["format"] = "json";
+
+		$uf = $this->_get("pdf_converters/url_to_pdf",$params);
 		if($uf->getStatusCode()!=200){
 			$msgs = json_decode($uf->getContent());
 			$err_message = is_array($msgs) && isset($msgs[0]) ? $msgs[0] : "conversion to PDF failed";
