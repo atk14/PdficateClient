@@ -66,6 +66,16 @@ class Client {
 
 	/**
 	 *
+	 *	echo $client->getServerAddr(); // 89.187.145.110
+	 */
+	function getServerAddr(){
+		if(preg_match('/https?:\/\/([^\/]+?)(:\d+|)\//',$this->api_url,$matches)){
+			return gethostbyname($matches[1]);
+		}
+	}
+
+	/**
+	 *
 	 *	$url_fetcher = $this->_get("pdf_converters/url_to_pdf",["url" => "http://...", "api_key" => "...", "format" => "json"]);
 	 */
 	protected function _get($action,$params){
