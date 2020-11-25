@@ -18,11 +18,13 @@ class Client {
 	const VERSION = "0.1";
 
 	var $api_key;
+	var $api_url;
 	var $options;
 
 	function __construct($options = array()){
 		$options += array(
 			"api_key" => PDFICATE_API_KEY,
+			"api_url" => PDFICATE_API_URL,
 
 			"format" => "A4",
 			"margin_top" => "2cm",
@@ -35,6 +37,9 @@ class Client {
 
 		$this->api_key = $options["api_key"];
 		unset($options["api_key"]);
+
+		$this->api_url = $options["api_url"];
+		unset($options["api_url"]);
 
 		$this->options = $options;
 	}
@@ -64,7 +69,7 @@ class Client {
 	 *	$url_fetcher = $this->_get("pdf_converters/url_to_pdf",["url" => "http://...", "api_key" => "...", "format" => "json"]);
 	 */
 	protected function _get($action,$params){
-		$url = PDFICATE_API_URL."en/$action/?".http_build_query($params);
+		$url = $this->api_url."en/$action/?".http_build_query($params);
 		$uf = $this->_getUrlFetcher();
 		$uf->fetchContent($url);
 		return $uf;
