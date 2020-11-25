@@ -32,7 +32,7 @@ class Client {
 			"margin_right" => "2cm",
 			"margin_bottom" => "2cm",
 
-			"render_delay" => 10, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
+			"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
 		);
 
 		$this->api_key = $options["api_key"];
