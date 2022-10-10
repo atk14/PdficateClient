@@ -25,9 +25,9 @@ class Client {
 		"page_size" => "A4",
 
 		"margin_top" => "2cm",
-		"margin_left" => "2cm",
 		"margin_right" => "2cm",
 		"margin_bottom" => "2cm",
+		"margin_left" => "2cm",
 
 		"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
 	);
