@@ -21,18 +21,22 @@ class Client {
 	var $api_url;
 	var $options;
 
+	var $default_options = array(
+		"page_size" => "A4",
+
+		"margin_top" => "2cm",
+		"margin_left" => "2cm",
+		"margin_right" => "2cm",
+		"margin_bottom" => "2cm",
+
+		"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
+	);
+
 	function __construct($options = array()){
+		$options += $this->default_options;
 		$options += array(
 			"api_key" => PDFICATE_API_KEY,
 			"api_url" => PDFICATE_API_URL,
-
-			"format" => "A4",
-			"margin_top" => "2cm",
-			"margin_left" => "2cm",
-			"margin_right" => "2cm",
-			"margin_bottom" => "2cm",
-
-			"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
 		);
 
 		$this->api_key = $options["api_key"];
