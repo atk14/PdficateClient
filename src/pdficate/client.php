@@ -51,7 +51,7 @@ class Client {
 		$params["api_key"] = $this->api_key;
 		$params["format"] = "json";
 
-		$uf = $this->_get("pdf_converters/url_to_pdf",$params);
+		$uf = $this->_post("pdf_printings/create_new",$params);
 		if($uf->getStatusCode()!=200){
 			$msgs = json_decode($uf->getContent());
 			$err_message = is_array($msgs) && isset($msgs[0]) ? $msgs[0] : "conversion to PDF failed";
@@ -82,6 +82,13 @@ class Client {
 		$url = $this->api_url."en/$action/?".http_build_query($params);
 		$uf = $this->_getUrlFetcher();
 		$uf->fetchContent($url);
+		return $uf;
+	}
+
+	protected function _post($action,$params){
+		$url = $this->api_url."en/$action/";
+		$uf = $this->_getUrlFetcher($url);
+		$uf->post($params);
 		return $uf;
 	}
 
