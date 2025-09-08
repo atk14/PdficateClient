@@ -32,6 +32,8 @@ class Client {
 			"margin_right" => "2cm",
 			"margin_bottom" => "2cm",
 
+			"print_background" => false, // true, false, "on", "off", "true", "false"...
+
 			"delay" => 0, // ms, the delay before printing to ensure that the page is fully loaded, intended for pages with a JS loading effect and so on
 		);
 
@@ -51,6 +53,8 @@ class Client {
 		$params["api_key"] = $this->api_key;
 		$params["format"] = "json";
 
+		$params = $this->_cleanupBooleans($params);
+
 		$uf = $this->_post("pdf_printings/create_new",$params);
 		if($uf->getStatusCode()!=200){
 			$msgs = json_decode($uf->getContent());
@@ -62,6 +66,26 @@ class Client {
 		\Files::WriteToFile($filename,$uf->getContent());
 
 		return $filename;
+	}
+
+	function _cleanupBooleans($params){
+		foreach([
+				"print_background",
+		] as $k){
+			// string to bool
+			if(is_string($params[$k])){
+				$params[$k] = \Strin4::ToObject($params[$k])->toBoolean();
+			}
+
+			// bool to "on" or nothing
+			if($params[$k]){
+				$params[$k] = "on";
+			}else{
+				unset($params[$k]);
+			}
+		}
+
+		return $params;
 	}
 
 	/**
