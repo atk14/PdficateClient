@@ -3,6 +3,10 @@ Change Log
 
 All notable changes to this project will be documented in this file.
 
+### [0.1.3] - 2025-09-08
+
+* b327c6b - Added option print_background (default false)
+
 ### [0.1.2] - 2022-10-10
 
 * b398115 - Added new class Pdficate\Client\Screenshoter

@@ -15,7 +15,7 @@ defined("PDFICATE_API_URL") 							|| define("PDFICATE_API_URL","https://pdficat
 
 class Client {
 
-	const VERSION = "0.1.2";
+	const VERSION = "0.1.3";
 
 	var $api_key;
 	var $api_url;
